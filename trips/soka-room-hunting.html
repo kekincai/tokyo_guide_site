@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>草加看房一日行程 & 路线手册（水天宫前出发）</title>
+    <style>
+        :root {
+            --bg: #f4f5fb;
+            --card-bg: #ffffff;
+            --accent: #4454dd;
+            --accent-soft: #e2e6ff;
+            --accent-train: #1b6cf0;
+            --accent-walk: #00a37a;
+            --text-main: #222222;
+            --text-muted: #666666;
+            --border-soft: #e0e0ea;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 980px;
+            margin: 24px auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.13);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+
+        .title-block {
+            flex: 1;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            letter-spacing: 0.06em;
+        }
+
+        .subtitle {
+            margin: 0;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .meta-chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .chip {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: #fafafa;
+            color: var(--text-muted);
+        }
+
+        .chip.accent {
+            border-color: var(--accent-soft);
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: 2.2fr 1.8fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 14px 16px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-title span.tag {
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 999px;
+            border: 1px solid var(--accent-soft);
+            color: var(--accent);
+            background: #f7f8ff;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 6px 0 0;
+            font-size: 13px;
+        }
+
+        .summary-list li {
+            margin-bottom: 2px;
+        }
+
+        .summary-list li strong {
+            color: #333;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 6px;
+            font-size: 11px;
+        }
+
+        .badge {
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px dashed var(--border-soft);
+            color: var(--text-muted);
+        }
+
+        /* Map block */
+        .map-block {
+            margin-bottom: 22px;
+        }
+
+        .map-title-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .map-title-row h2 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .map-title-row a {
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .map-title-row a:hover {
+            text-decoration: underline;
+        }
+
+        .map-iframe {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+        }
+
+        .map-iframe iframe {
+            width: 100%;
+            height: 360px;
+            border: none;
+        }
+
+        .map-note {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+            padding-top: 4px;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 0;
+            padding: 12px 0 4px;
+            list-style: none;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 90px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-soft), #d6d9ff);
+        }
+
+        .timeline-item {
+            position: relative;
+            display: grid;
+            grid-template-columns: 90px minmax(0, 1fr);
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .timeline-time {
+            font-size: 12px;
+            text-align: right;
+            padding-right: 8px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 90px;
+            top: 22px;
+            transform: translate(-50%, -50%);
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px rgba(80, 101, 216, 0.18);
+        }
+
+        .timeline-content {
+            background: #fafbff;
+            border-radius: 12px;
+            padding: 10px 12px;
+            border: 1px solid var(--accent-soft);
+            font-size: 13px;
+        }
+
+        .timeline-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+            align-items: baseline;
+        }
+
+        .loc {
+            font-weight: 600;
+            color: #222;
+        }
+
+        .tag-small {
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 999px;
+            border: 1px solid var(--accent-soft);
+            color: var(--accent);
+            background: #f7f8ff;
+            white-space: nowrap;
+        }
+
+        .timeline-content p {
+            margin: 2px 0;
+        }
+
+        .timeline-content ul {
+            margin: 4px 0 0;
+            padding-left: 18px;
+        }
+
+        .timeline-content li {
+            margin-bottom: 2px;
+        }
+
+        .sub-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        /* Route bands (电车/步行小地图) */
+        .route-band {
+            margin: 6px 0 4px;
+            border-radius: 10px;
+            padding: 6px 8px;
+            background: #fff;
+            border: 1px dashed var(--accent-soft);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .route-band-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .route-mode-chip {
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 999px;
+            color: #fff;
+            background: var(--accent-train);
+        }
+
+        .route-mode-chip.walk {
+            background: var(--accent-walk);
+        }
+
+        .route-line {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+            font-size: 12px;
+        }
+
+        .route-stop {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stop-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-train);
+        }
+
+        .stop-dot.walk {
+            background: var(--accent-walk);
+        }
+
+        .route-arrow {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .route-link-row {
+            margin-top: 4px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-size: 11px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--accent-soft);
+            background: #f8f8ff;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .btn-link span.icon {
+            font-size: 12px;
+        }
+
+        /* Notes section */
+        .notes {
+            display: grid;
+            grid-template-columns: 1.3fr 1.7fr;
+            gap: 16px;
+            margin-top: 12px;
+            align-items: flex-start;
+        }
+
+        .notes .placeholder-map {
+            border-radius: 12px;
+            border: 1px dashed var(--accent-soft);
+            background: #f5f6ff;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .placeholder-map-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .placeholder-map p {
+            margin: 2px 0;
+        }
+
+        .notes .card {
+            font-size: 13px;
+        }
+
+        .notes ul {
+            margin: 4px 0 0;
+            padding-left: 18px;
+        }
+
+        footer {
+            margin-top: 18px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        /* Print tweaks */
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .map-iframe iframe {
+                display: none;
+                /* 打印隐藏在线地图 */
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+            .notes {
+                grid-template-columns: 1fr;
+            }
+
+            .map-iframe iframe {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <div class="title-block">
+                <h1>草加看房一日行程 & 路线手册</h1>
+                <p class="subtitle">出发地：水天宫前站 ｜ 目的：草加・谷塚看房 + 周边环境考察</p>
+                <div class="meta-chip-group">
+                    <span class="chip accent">周六 · 一整天</span>
+                    <span class="chip">交通：电车（半藏门线直通东武线）</span>
+                    <span class="chip">预算：月租 8–10 万日元</span>
+                    <span class="chip">目标房型：1K / 1DK / 1LDK</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="summary">
+            <div class="card">
+                <div class="card-title">
+                    行程概览
+                    <span class="tag">Overview</span>
+                </div>
+                <ul class="summary-list">
+                    <li><strong>上午：</strong>水天宫前 → 草加（体验通勤）、草加站东口商业圈与住宅区</li>
+                    <li><strong>中午：</strong>草加东口午餐，观察物价与居民生活节奏</li>
+                    <li><strong>下午前半：</strong>草加西口住宅区、超市、大荣一带环境与治安</li>
+                    <li><strong>下午后半（可选）：</strong>谷塚站东口生活圈与新建公寓周边</li>
+                    <li><strong>傍晚：</strong>草加出发，体验晚高峰通勤返回东京</li>
+                </ul>
+                <div class="badge-row">
+                    <span class="badge">真实通勤时间体感</span>
+                    <span class="badge">对比东口 / 西口氛围</span>
+                    <span class="badge">谷塚作为 Plan B 备选</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    看房重点
+                    <span class="tag">Checklist</span>
+                </div>
+                <ul class="summary-list">
+                    <li><strong>① 交通：</strong>水天宫前 ↔ 草加 实际门到站耗时、换乘方便度</li>
+                    <li><strong>② 生活机能：</strong>超市、药妆、商场、便利店密度</li>
+                    <li><strong>③ 居住氛围：</strong>街道宽窄、噪音、人流、晚上安全感</li>
+                    <li><strong>④ 房源感受：</strong>代表物件周边环境是否匹配租金档位</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="map-block">
+            <div class="map-title-row">
+                <h2>📍 实地考察总地图（Google My Maps）</h2>
+                <a href="https://www.google.com/maps/d/edit?mid=1r_j4GQFepFDXC9UE1AHZallklTDurFs&usp=sharing"
+                    target="_blank">
+                    在新标签页打开完整地图
+                </a>
+            </div>
+            <div class="map-iframe">
+                <iframe src="https://www.google.com/maps/d/embed?mid=1r_j4GQFepFDXC9UE1AHZallklTDurFs"></iframe>
+            </div>
+            <div class="map-note">
+                提示：手机上可以点上面的链接在 Google Maps App 里看；打印为 PDF 时，这块在线地图会自动隐藏，避免空白。
+            </div>
+        </section>
+
+        <h2 class="section-title">详细时间表 & 每段路线</h2>
+
+        <ul class="timeline">
+            <!-- 1 电车：水天宫前 → 草加 -->
+            <li class="timeline-item">
+                <div class="timeline-time">09:30–10:30</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-heading">
+                        <div class="loc">水天宫前 → 草加（电车）</div>
+                        <div class="tag-small">通勤体验</div>
+                    </div>
+                    <div class="route-band">
+                        <div class="route-band-header">
+                            <span class="route-mode-chip">🚇 电车</span>
+                            <span>预计约 30–35 分钟 · 半藏门线直通东武スカイツリーライン</span>
+                        </div>
+                        <div class="route-line">
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>水天宫前</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>锦系町 / 押上（途中）</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>北千住</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>草加</span>
+                            </div>
+                        </div>
+                        <div class="route-link-row">
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=水天宮前駅&destination=草加駅&travelmode=transit">
+                                <span class="icon">🔗</span><span>在 Google 地图中查看电车路线</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p>从水天宫前站直接乘坐半藏门线直通列车前往草加站，中途经过押上接入东武线。</p>
+                    <ul>
+                        <li>统计从家出门到草加站东口站前的总耗时。</li>
+                        <li>注意车内拥挤程度、站台导视是否清晰。</li>
+                        <li>体感一下：每天这样通勤是否舒服。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 2 步行：草加东口 → 住吉一丁目 / エルスタンザ草加 -->
+            <li class="timeline-item">
+                <div class="timeline-time">10:30–12:00</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-heading">
+                        <div class="loc">草加站东口区域 & 住吉一丁目</div>
+                        <div class="tag-small">商业圈 + 住宅</div>
+                    </div>
+                    <div class="route-band">
+                        <div class="route-band-header">
+                            <span class="route-mode-chip walk">🚶 步行</span>
+                            <span>草加站东口 → VARIE / 丸井 → 住吉一丁目 → エルスタンザ草加</span>
+                        </div>
+                        <div class="route-line">
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>草加站东口</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>站内 VARIE / 丸井</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>住吉一丁目住宅区</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>エルスタンザ草加 周边</span>
+                            </div>
+                        </div>
+                        <div class="route-link-row">
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=草加駅+東口&destination=エルスタンザ草加&travelmode=walking">
+                                <span class="icon">🔗</span><span>步行路线：草加东口 → エルスタンザ草加</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p>从草加站东口出站，先在车站商场与周边商店街绕一圈，再往住吉一丁目、エルスタンザ草加方向走。</p>
+                    <ul>
+                        <li>数一数 5–10 分钟步行范围内的超市、药妆、便利店数量。</li>
+                        <li>感觉一下街道宽窄、车流、噪音、太阳照射 / 阴影多不多。</li>
+                        <li>在エルスタンザ草加附近街区多绕两圈，想象晚上下班回家的路线。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 3 午餐（不专门画路线了，主要在东口） -->
+            <li class="timeline-item">
+                <div class="timeline-time">12:00–13:30</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-heading">
+                        <div class="loc">草加东口午餐 & 商场考察</div>
+                        <div class="tag-small">生活成本</div>
+                    </div>
+                    <p>在东口商场或站前找一家顺眼的餐厅，体验当地午饭价格与人流情况。</p>
+                    <ul>
+                        <li>记录一份普通午餐的价格（拉面 / 定食）。</li>
+                        <li>观察中午餐厅客群：上班族多还是本地居民多。</li>
+                        <li>饭后在超市再随便逛一圈，看日常物价水平。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 4 步行：草加西口方向 -->
+            <li class="timeline-item">
+                <div class="timeline-time">13:30–15:00</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-heading">
+                        <div class="loc">草加站西口 & 西町住宅区</div>
+                        <div class="tag-small">安静住宅区</div>
+                    </div>
+                    <div class="route-band">
+                        <div class="route-band-header">
+                            <span class="route-mode-chip walk">🚶 步行</span>
+                            <span>草加站西口 → 大荣超市 → 西町住宅区</span>
+                        </div>
+                        <div class="route-line">
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>草加站西口</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>大荣 / 超市一带</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>西町住宅小街</span>
+                            </div>
+                        </div>
+                        <div class="route-link-row">
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=草加駅+西口&destination=草加市西町&travelmode=walking">
+                                <span class="icon">🔗</span><span>步行路线：草加西口 → 西町住宅区</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p>从西口出站，顺路经过大荣超市，再走进西町方向的住宅街，体感「安静版草加」。</p>
+                    <ul>
+                        <li>看一下大荣营业规模，是否适合下班顺路买菜。</li>
+                        <li>在小街里感受车流、路灯、行人密度。</li>
+                        <li>留意有没有你不喜欢的氛围（例如很窄很暗的小巷、风俗店密集区域）。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 5 电车 + 步行：草加 → 谷塚 & 谷塚步行 -->
+            <li class="timeline-item">
+                <div class="timeline-time">15:00–16:30</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-heading">
+                        <div class="loc">谷塚站（可选备选区域）</div>
+                        <div class="tag-small">对比区域</div>
+                    </div>
+                    <div class="route-band">
+                        <div class="route-band-header">
+                            <span class="route-mode-chip">🚇 电车</span>
+                            <span>草加 → 谷塚（约 3 分钟）</span>
+                        </div>
+                        <div class="route-line">
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>草加</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>谷塚</span>
+                            </div>
+                        </div>
+                        <div class="route-link-row">
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=草加駅&destination=谷塚駅&travelmode=transit">
+                                <span class="icon">🔗</span><span>在 Google 地图中查看 草加 → 谷塚 电车</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="route-band">
+                        <div class="route-band-header">
+                            <span class="route-mode-chip walk">🚶 步行</span>
+                            <span>谷塚站东口 → 站前大楼 → 谷塚一丁目新公寓区</span>
+                        </div>
+                        <div class="route-line">
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>谷塚站东口</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>谷塚コリーナ等站前商楼</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot walk"></span><span>谷塚一丁目住宅区 / Grand Ladour 周边</span>
+                            </div>
+                        </div>
+                        <div class="route-link-row">
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=谷塚駅&destination=谷塚一丁目&travelmode=walking">
+                                <span class="icon">🔗</span><span>步行路线：谷塚站 → 谷塚一丁目</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <p>快速看一眼谷塚这个「更安静的小城」：站前综合大楼 + 住宅区，看看你是不是更喜欢这种尺度。</p>
+                    <ul>
+                        <li>感觉站前是否紧凑但方便，生活机能是否集中。</li>
+                        <li>走到新公寓一带，看街道宽度、行人密度、安全感。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 6 电车：草加/谷塚 → 水天宫前 -->
+            <li class="timeline-item">
+                <div class="timeline-time">16:30–返程</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-heading">
+                        <div class="loc">草加 / 谷塚 → 水天宫前（电车返程）</div>
+                        <div class="tag-small">晚高峰体验</div>
+                    </div>
+                    <div class="route-band">
+                        <div class="route-band-header">
+                            <span class="route-mode-chip">🚇 电车</span>
+                            <span>东武线 → 北千住 → 半藏门线 → 水天宫前</span>
+                        </div>
+                        <div class="route-line">
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>草加 / 谷塚</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>北千住</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>锦系町 / 押上（途中）</span>
+                            </div>
+                            <span class="route-arrow">⟶</span>
+                            <div class="route-stop">
+                                <span class="stop-dot"></span><span>水天宫前</span>
+                            </div>
+                        </div>
+                        <div class="route-link-row">
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=草加駅&destination=水天宮前駅&travelmode=transit">
+                                <span class="icon">🔗</span><span>草加 → 水天宫前 电车路线</span>
+                            </a>
+                            <a class="btn-link" target="_blank"
+                                href="https://www.google.com/maps/dir/?api=1&origin=谷塚駅&destination=水天宮前駅&travelmode=transit">
+                                <span class="icon">🔗</span><span>谷塚 → 水天宫前 电车路线</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p>选在 17:00 前后返程，体验一下「准晚高峰」。</p>
+                    <ul>
+                        <li>统计站前 → 家门口的总用时。</li>
+                        <li>看车内拥挤度是否还能接受；如果今天状态累得不行，就给通勤打个低分。</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <h2 class="section-title">记录 & 打分建议</h2>
+        <section class="notes">
+            <div class="placeholder-map">
+                <div class="placeholder-map-title">① 如何配合地图使用</div>
+                <p>这页上已经有：</p>
+                <ul>
+                    <li>一张总的 My Maps 地图（所有标记点）。</li>
+                    <li>每一段路线对应的 Google 地图导航按钮。</li>
+                </ul>
+                <p>现场操作建议：</p>
+                <ul>
+                    <li>手机上打开本网页 → 点击对应「路线按钮」直接导航。</li>
+                    <li>My Maps 地图单独在 Google Maps App 里打开，用来对照大方向。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">
+                    ② 回家之后的整理（可以配合 Excel 那个表）
+                    <span class="tag">After Trip</span>
+                </div>
+                <ul>
+                    <li>对每个区域打分（1–5）：交通 / 生活机能 / 安静度 / 喜欢程度。</li>
+                    <li>把手机里拍的照片按「东口 / 西口 / 谷塚」简单分文件夹。</li>
+                    <li>如果某个地方一走进来就觉得「舒服」，可以在 Excel 里标个 ⭐：以后优先看那里附近的房源。</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            打印提示：建议使用 A4 · 边距选「普通 / 最小」· 关闭浏览器页眉页脚，只保留本页内容。
+        </footer>
+    </div>
+</body>
+
+</html>
